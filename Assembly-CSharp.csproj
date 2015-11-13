@@ -48,8 +48,9 @@
      <Compile Include="Assets\Scripts\AwaySwitcher.cs" />
      <Compile Include="Assets\Scripts\HomeSwitcher.cs" />
      <Compile Include="Assets\Scripts\UI\Archive\TestTexTyper.cs" />
+     <Compile Include="Assets\Scripts\UI\Archive\TextBubbleSizer.cs" />
      <Compile Include="Assets\Scripts\UI\ChatBubbleController.cs" />
-     <Compile Include="Assets\Scripts\UI\TextBubbleSizer.cs" />
+     <Compile Include="Assets\Scripts\UI\JamesTyper.cs" />
      <Compile Include="Assets\Scripts\UI\TextTyper.cs" />
      <None Include="Assets\Characters\Soldier\shaders\gunsShader.shader" />
      <None Include="Assets\Characters\Soldier\shaders\AmandaShader.shader" />

@@ -6,7 +6,7 @@ public class TextTyper : MonoBehaviour
 
 {
 	public Text Textbox;
-	private string[] TextArray = new string[3] {"I have some news for you", "You need to hear it", "I'm pregnant"}; 
+	private string[] TextArray = new string[3] {"I have some news for you", "You need to hear itYou need to hear itYou need to hear it", "I'm pregnantI'm pregnantI'm pregnantI'm pregnantI'm pregnantI'm pregnantI'm pregnantI'm pregnant"}; 
 	private int CurrentText = 0;
 	public float TypeDelay = 0.1f;
 	public GameObject Chatbox;

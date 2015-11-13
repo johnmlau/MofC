@@ -6,17 +6,20 @@ public class ChatBubbleController : MonoBehaviour
 
 	{
 
-	public GameObject JamesBubble;
-	public GameObject RosBubble;
-	public GameObject Spawnloc;
-	public Transform ChatCanvas;
-	private float ChatVertOffset = 75f;
-	private Vector3 ChatHorzOffset;
+	public RectTransform JamesBubble;
+	public RectTransform RosBubble;
+	
+	public Transform Spawnloc;
 	public GameObject ScrollLimit;
 
-	public Text RosChatText;
+	public Transform ChatCanvas;
+	private float ChatVertOffset = 10f;
+	private Vector3 ChatHorzOffset;
 
+	public Text RosChatText;
 	public Text JamesBubbleText;
+
+	private Rect BubbleRect;
 
 
 	// Use this for initialization
@@ -30,36 +33,39 @@ public class ChatBubbleController : MonoBehaviour
 	void Update () 
 	
 	{
-		if (Input.GetKeyDown (KeyCode.Space))
-			JamesChat ();
+		//if (Input.GetKeyDown (KeyCode.Space))
+			//JamesChat ();
 	
 	}
 
 	public void RosChat()
 	{
-		GameObject chatbubble = Instantiate (JamesBubble, (Spawnloc.transform.position + ChatHorzOffset),Quaternion.identity) as GameObject; 
-		//Preceding method is so that we can keep a hold of the information associated with the new instantiated object, which we do because of the transform command in the next line
-		chatbubble.transform.SetParent (ChatCanvas.transform);
-		Spawnloc.transform.position -= new Vector3 (0,ChatVertOffset,0);
-
-		if (Spawnloc.transform.position.y <= ScrollLimit.transform.position.y) 
-		{
-			ChatCanvas.transform.position += new Vector3 (0, ChatVertOffset, 0);
-		}
-
+		StartCoroutine (CreateNewBubble(RosBubble, ChatHorzOffset));
 	}
 
 	public void JamesChat()
 	{
-		GameObject chatbubble = Instantiate (RosBubble, (Spawnloc.transform.position - ChatHorzOffset), Quaternion.identity) as GameObject; 
-		//Preceding method is so that we can keep a hold of the information associated with the new instantiated object, which we do because of the transform command in the next line
-		chatbubble.transform.SetParent (ChatCanvas.transform);
-		Spawnloc.transform.position -= new Vector3 (0, ChatVertOffset, 0);
-	
-		if (Spawnloc.transform.position.y <= ScrollLimit.transform.position.y) {
-			ChatCanvas.transform.position += new Vector3 (0, ChatVertOffset, 0);
-		}
-
+		StartCoroutine (CreateNewBubble(JamesBubble, -ChatHorzOffset));
 	}
 
+
+	private IEnumerator CreateNewBubble (RectTransform bubblePrefab, Vector3 horizontalOffset)
+	{
+		RectTransform newBubble = Instantiate(bubblePrefab, (Spawnloc.position + horizontalOffset), Quaternion.identity) as RectTransform;
+		
+		//Preceding method is so that we can keep a hold of the information associated with the new instantiated object, which we do because of the transform command in the next line
+		newBubble.SetParent (ChatCanvas.transform);
+
+		yield return new WaitForEndOfFrame ();
+
+		float moveAmount = newBubble.rect.height + ChatVertOffset;
+	
+		Spawnloc.position -= moveAmount * Vector3.up;
+
+		//The following only scrolls the chat up once you've got past a certain point (ScrollLimit)
+		if (Spawnloc.position.y <= ScrollLimit.transform.position.y)
+		{
+			ChatCanvas.transform.position += moveAmount * Vector3.up;
+		}
+	}
 }
