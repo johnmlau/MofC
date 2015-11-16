@@ -6,7 +6,7 @@ public class TextTyper : MonoBehaviour
 
 {
 	public Text Textbox;
-	private string[] TextArray = new string[3] {"I have some news for you", "You need to hear itYou need to hear itYou need to hear it", "I'm pregnantI'm pregnantI'm pregnantI'm pregnantI'm pregnantI'm pregnantI'm pregnantI'm pregnant"}; 
+	private string[] TextArray = new string[3] {"I have some news for you", "You really need to hear it, I'm serious, James.", "I'm three months gone and I'm keeping it. I hope you can afford child support, big guy."}; 
 	private int CurrentText = 0;
 	public float TypeDelay = 0.1f;
 	public GameObject Chatbox;
@@ -26,7 +26,6 @@ public class TextTyper : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.Q)) 
 		{
 			CurrentText = 0;
-			//WriteText (CurrentText);
 			StartCoroutine (AnimateText ());
 		}
 
@@ -42,6 +41,9 @@ public class TextTyper : MonoBehaviour
 			StartCoroutine(AnimateText());
 		}
 	}
+
+
+
 //This is the typewriter function
 	IEnumerator AnimateText()
 	{

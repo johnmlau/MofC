@@ -44,7 +44,17 @@ public class JamesTyper : MonoBehaviour
 	public void WriteText ()
 	{
 		Textbox.text = TextArray [CurrentText];
-		ChatController.JamesChat ();
+
+		if (CurrentText < TextArray.Length) 
+
+		{
+			ChatController.JamesChat ();
+			CurrentText +=1;
+		}
+
+
+
+
 	}
 
 

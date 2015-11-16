@@ -33,9 +33,7 @@ public class ChatBubbleController : MonoBehaviour
 	void Update () 
 	
 	{
-		//if (Input.GetKeyDown (KeyCode.Space))
-			//JamesChat ();
-	
+
 	}
 
 	public void RosChat()
